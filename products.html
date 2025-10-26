@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - SURYAS ASTITV</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">SURYAS ASTITV</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">Products</a></li>
+        <li><a href="latest.html">Latest</a></li>
+        <li><a href="offers.html">Offers</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Products Section -->
+  <section class="products">
+    <h1>Our Products</h1>
+
+    <div class="product-grid">
+
+      <!-- Product Card 1 -->
+      <div class="product-card">
+        <img src="images/Khatu-Shyam.jpg" alt="Brass Khatu Shyam">
+        <h3>Brass Khatu Shyam</h3>
+        <p>Sacred Brass Khatu Shyam Ji Idol - Temple & Home Decor
+        </p>
+        <p class="price">₹349</p>
+        <a href="https://wa.me/p/24433267496311796/916395387079" class="btn">Order Now</a>
+        
+      </div>
+
+      <!-- Product Card 2 -->
+      <div class="product-card">
+        <img src="images/Ganesh-Lakshmi.jpg" alt="Brass Ganesh Lakshmi">
+        <h3>Brass Ganesh Lakshmi</h3>
+        <p>Divine Brass Ganesh Lakshmi Idol - For Puja & Prosperity
+        </p>
+        <p class="price">₹349</p>
+        <a href="https://wa.me/p/24626718650296021/916395387079" class="btn">Order Now</a>
+        
+      </div>
+
+      <!-- Product Card 3 -->
+      <div class="product-card">
+        <img src="images/Shiv-Family.jpg" alt="Brass Shiv-Family">
+        <h3>Brass Shiv-Family</h3>
+        <p>Sacred Brass Shiv Family Idol – Shiv Parivar Statue
+        </p>
+        <p class="price">₹449</p>
+        <a href="https://wa.me/p/31438492872460970/916395387079" class="btn">Order Now</a>
+      
+      </div>
+
+      <!-- Product Card 4 -->
+      <div class="product-card">
+        <img src="images/Laddoo-Gopal.jpg" alt="Brass Laddoo Gopal">
+        <h3>Brass Laddo-Gopal</h3>
+        <p>Elegant Brass Laddu Gopal Idol – For Devotion & Gifting
+        </p>
+        <p class="price">₹599</p>
+        <a href="https://wa.me/p/10001564266611127/916395387079" class="btn">Order Now</a>
+        
+      </div>
+
+      <!-- Product Card 5 -->
+      <div class="product-card">
+        <img src="images/lota.jpg" alt="Brass Lota">
+        <h3>Brass Lota</h3>
+        <p>Traditional Brass Lota – Perfect for Puja & Daily Rituals
+        </p><p class="price">₹349</p>
+        <a href="https://wa.me/p/24544456965185483/916395387079" class="btn">Order Now</a>
+      
+      </div>
+
+      <!-- Product Card 6 -->
+      <div class="product-card">
+        <img src="images/Akhand-Diya.jpg" alt="Brass Akhand-Diya">
+        <h3>Brass Akhand-Diya</h3>
+        <p>Eternal Brass Akhand Diya – Long Lasting Spiritual Glow.</p>
+        <p class="price">₹299</p>
+        <a href="https://wa.me/p/32109178455348170/916395387079" class="btn">Order Now</a>
+        
+      </div>
+
+      <!-- Product Card 7 -->
+      <div class="product-card">
+        <img src="images/Mor-Diya.jpg" alt="Brass Mor Diya">
+        <h3>Brass Mor Diya</h3>
+        <p>Peacock Design Brass Diya – Artistic & Festive Lighting
+        </p>
+        <p class="price">₹799</p>
+        <a href="https://wa.me/p/24432078409820369/916395387079" class="btn">Order Now</a>
+        
+      </div>
+
+      <!-- Product Card 8 -->
+      <div class="product-card">
+        <img src="images/Lobhan.jpg" alt="Brass Lobhan">
+        <h3>Brass Lobhan</h3>
+        <p>Brass Lobhan Dhoop Dani – For Aromatic Puja & Positivity
+        </p>
+        <p class="price">₹799</p>
+        <a href="https://wa.me/p/24472252772462610/916395387079" class="btn">Order Now</a>
+     
+      </div>
+
+
+      <!-- Add more product cards as needed -->
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 SURYAS ASTITV. All Rights Reserved.</p>
+  </footer>
+  <script>
+const sheetURL = "https://drive.google.com/file/d/11SI6MC_4Xmq0pJrFAmwMfFbVMzSZcF35/view?usp=drivesdk"; 
+
+fetch(sheetURL)
+  .then(response => response.text())
+  .then(csvText => {
+    const rows = csvText.split("\n").slice(1); // header skip
+    const container = document.getElementById("product-list");
+
+    rows.forEach(row => {
+      const cols = row.split(",");
+      if (cols.length < 5) return;
+      const [name, price, img, desc, link] = cols;
+
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${img}" alt="${name}">
+        <h3>${name}</h3>
+        <p>${desc}</p>
+        <p><strong>₹${price}</strong></p>
+        <a href="${link}" target="_blank">Buy Now</a>
+      `;
+      container.appendChild(card);
+    });
+  })
+  .catch(err => console.error("Error loading products:", err));
+</script>
+</body>
+</html>
