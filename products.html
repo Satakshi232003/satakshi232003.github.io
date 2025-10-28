@@ -4,22 +4,373 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products - SURYAS ASTITV</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"><style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+       .header-wrapper {
+    width: 100%;
+    margin: 0;
+    background-color: #fff;
+}
+
+        .main-header-bar {
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-box {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.2;
+            text-align: center;
+        }
+        .logo-image-placeholder {
+            width: 30px;
+            height: 30px;
+            background-color: #fcfcf4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            color: #d4a753; 
+            border: 1px solid #d4a753;
+            margin-bottom: 2px;
+        }
+        .logo-text { font-weight: bold; font-size: 10px; color: #d4a753; }
+        
+        .header-actions { margin-left: auto; display: flex; }
+        .header-actions span, .menu-icon {
+            font-size: 20px;
+            margin-left: 15px;
+            color: #333;
+            cursor: pointer;
+        }
+        .menu-icon { margin-left: 0; margin-right: 15px; }
+
+        .shop-all-nav {
+            padding: 10px 15px;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            z-index: 5;
+        }
+        .dropdown-arrow { display: inline-block; margin-left: 5px; transform: translateY(-2px); }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            width: 200px;
+            border: 1px solid #eee;
+            display: none; 
+        }
+        .dropdown-menu.active { display: block; }
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            border-bottom: 1px solid #f7f7f7;
+        }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover { background-color: #f7f7f7; }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 80%;
+            max-width: 300px;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%); 
+            transition: transform 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        .sidebar.active { transform: translateX(0); }
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            display: none;
+        }
+        .sidebar-backdrop.active { display: block; }
+
+        .sidebar-header { display: flex; align-items: center; padding: 10px 15px; border-bottom: 1px solid #eee; }
+        .sidebar-close { font-size: 30px; margin-right: 15px; cursor: pointer; }
+        .sidebar-nav-list { list-style: none; padding: 0; margin: 0; }
+        .sidebar-nav-list li a { display: block; padding: 12px 20px; text-decoration: none; color: #333; font-size: 16px; border-bottom: 1px solid #f0f0f0; }
+        .sidebar-copyright { padding: 20px; font-size: 12px; color: #999; }
+
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 1); 
+            z-index: 3000;
+            display: none;
+            padding: 15px;
+        }
+        .search-overlay.active { display: block; }
+        
+        .search-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #searchInput {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        #searchButton {
+            background-color: #4848d7; 
+            color: white;
+            padding: 10px 15px;
+            border: 1px solid #4848d7;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-close-btn {
+            font-size: 30px;
+            margin-right: 15px;
+            cursor: pointer;
+            color: #333;
+        }
+        .search-results-container {
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+        .search-results-container p {
+            color: #999;
+            text-align: center;
+        }
+        .product-link {
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+        }
+        .product-link:last-child { border-bottom: none; }
+    </style>
 </head>
 <body>
 
   <!-- Header -->
-  <header>
-    <div class="logo">SURYAS ASTITV</div>
-    <nav>
-      <ul>
+  
+<div class="header-wrapper">
+    <div class="main-header-bar">
+        <span class="menu-icon" id="menuOpenBtn">☰</span>
+        
+        <div class="logo-box">
+            <div class="logo-image-placeholder">SS</div>
+            <span class="logo-text">SURVAS ASTIV</span>
+        </div>
+        
+        <div class="header-actions">
+            <span aria-label="Search Icon" id="searchOpenBtn">🔍</span>
+            <span aria-label="Cart Icon">🛒</span>
+        </div>
+    </div>
+    
+    <div class="shop-all-nav" id="shopAllNav">
+        Shop All <span class="dropdown-arrow">▼</span>
+        <div class="dropdown-menu" id="shopAllDropdown">
+            <a href="Brass Idols.html">Brass Idols</a>
+            <a href="Brass Pooja Essentials.html">Brass Pooja Essentials</a>
+            <a href="Home Decoration.html">Home Decoration</a>
+            <a href="Showpieces.html">Showpieces</a>
+            <a href="Statues.html">Statues</a>
+            <a href="Gift Items.html">Gift Items</a>
+            <a href="products.html">Shop All Products</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <span class="sidebar-close" id="sidebarCloseBtn">✕</span>
+        <div class="logo-box">
+            <div class="logo-image-placeholder">S.S.</div>
+            <span class="logo-text">SURVAS ASTIV</span>
+        </div>
+    </div>
+
+    <ul class="sidebar-nav-list">
         <li><a href="index.html">Home</a></li>
-        <li><a href="products.html" class="active">Products</a></li>
-        <li><a href="latest.html">Latest</a></li>
-        <li><a href="offers.html">Offers</a></li>
-      </ul>
-    </nav>
-  </header>
+        <li><a href="products.html">Shop</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="FACs.html">FAQs</a></li>v
+        <li style="border-top: 1px solid #ccc; margin-top: 10px;"><a href="#">Track Order</a></li>
+        <li><a href="Cancel.html">Cancellation & Refund</a></li>
+        <li><a href="Shipping.html">Shipping & Delivery</a></li>
+        <li><a href="TC.html">Terms & Conditions</a></li>
+        <li><a href="#">Privacy</a></li>
+    </ul>
+    <div class="sidebar-copyright">
+        © suryasastitv.myinstamojo.com<br>
+        2025. All rights reserved.
+    </div>
+</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-header">
+        <span class="search-close-btn" id="searchCloseBtn">✕</span>
+        <input type="text" id="searchInput" placeholder="Search for products...">
+        <button id="searchButton">Search</button>
+    </div>
+    
+    <div class="search-results-container" id="searchResults">
+        <p>Type to see search results...</p>
+    </div>
+</div>
+
+<script>
+    const productData = [
+        { name: "Hi, I am a controller!", url: "#" },
+        { name: "Hi, I am a bulb!", url: "#" },
+        { name: "Hi, I am a trouser!", url: "#" },
+        { name: "Designer Shirt", url: "#" },
+        { name: "Smart Watch", url: "#" },
+        { name: "Wooden Guitar", url: "#" },
+        { name: "Red Controller Pro", url: "#" },
+        { name: "Bulb LED Eco", url: "#" }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const body = document.body;
+
+        // === Sidebar ===
+        const sidebar = document.getElementById('sidebar');
+        const menuOpenBtn = document.getElementById('menuOpenBtn');
+        const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
+        const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+        function toggleSidebar(isOpen) {
+            if (isOpen) {
+                sidebar.classList.add('active');
+                sidebarBackdrop.classList.add('active');
+                body.style.overflow = 'hidden'; 
+            } else {
+                sidebar.classList.remove('active');
+                sidebarBackdrop.classList.remove('active');
+                body.style.overflow = 'auto';
+            }
+        }
+
+        menuOpenBtn.addEventListener('click', () => toggleSidebar(true));
+        sidebarCloseBtn.addEventListener('click', () => toggleSidebar(false));
+        sidebarBackdrop.addEventListener('click', () => toggleSidebar(false));
+
+        // === Search ===
+        const searchOpenBtn = document.getElementById('searchOpenBtn');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchCloseBtn = document.getElementById('searchCloseBtn');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+        const searchResults = document.getElementById('searchResults');
+
+        function toggleSearchOverlay(isOpen) {
+            if (isOpen) {
+                searchOverlay.classList.add('active');
+                body.style.overflow = 'hidden';
+                searchInput.focus(); 
+            } else {
+                searchOverlay.classList.remove('active');
+                body.style.overflow = 'auto';
+                searchInput.value = ''; 
+                searchResults.innerHTML = '<p>Type to see search results...</p>'; 
+            }
+        }
+
+        searchOpenBtn.addEventListener('click', () => toggleSearchOverlay(true));
+        searchCloseBtn.addEventListener('click', () => toggleSearchOverlay(false));
+
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            searchResults.innerHTML = ''; 
+
+            if (query.length === 0) {
+                searchResults.innerHTML = '<p>Type to see search results...</p>';
+                return;
+            }
+
+            const results = productData.filter(product => product.name.toLowerCase().includes(query));
+
+            if (results.length === 0) {
+                searchResults.innerHTML = `<p>No products found for "<strong>${query}</strong>".</p>`;
+            } else {
+                results.forEach(product => {
+                    const link = document.createElement('a');
+                    link.className = 'product-link';
+                    link.href = product.url;
+                    const highlightedName = product.name.replace(new RegExp(query, 'gi'), match => `<strong style="color:#d4a753;">${match}</strong>`);
+                    link.innerHTML = highlightedName;
+                    searchResults.appendChild(link);
+                });
+            }
+        }
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('input', performSearch);
+        searchInput.addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
+
+        // === Dropdown ===
+        const shopAllNav = document.getElementById('shopAllNav');
+        const shopAllDropdown = document.getElementById('shopAllDropdown');
+
+        shopAllNav.addEventListener('click', function(event) {
+            shopAllDropdown.classList.toggle('active');
+            event.stopPropagation();
+        });
+
+        document.addEventListener('click', function() {
+            shopAllDropdown.classList.remove('active');
+        });
+    });
+</script>
 <section class="categories-section">
       <h1>Shop by Category</h1>
 

@@ -5,20 +5,407 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - SURYAS ASTITV</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+       .header-wrapper {
+    width: 100%;
+    margin: 0;
+    background-color: #fff;
+}
+
+        .main-header-bar {
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-box {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.2;
+            text-align: center;
+        }
+        .logo-image-placeholder {
+            width: 30px;
+            height: 30px;
+            background-color: #fcfcf4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            color: #d4a753; 
+            border: 1px solid #d4a753;
+            margin-bottom: 2px;
+        }
+        .logo-text { font-weight: bold; font-size: 10px; color: #d4a753; }
+        
+        .header-actions { margin-left: auto; display: flex; }
+        .header-actions span, .menu-icon {
+            font-size: 20px;
+            margin-left: 15px;
+            color: #333;
+            cursor: pointer;
+        }
+        .menu-icon { margin-left: 0; margin-right: 15px; }
+
+        .shop-all-nav {
+            padding: 10px 15px;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            z-index: 5;
+        }
+        .dropdown-arrow { display: inline-block; margin-left: 5px; transform: translateY(-2px); }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            width: 200px;
+            border: 1px solid #eee;
+            display: none; 
+        }
+        .dropdown-menu.active { display: block; }
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            border-bottom: 1px solid #f7f7f7;
+        }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover { background-color: #f7f7f7; }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 80%;
+            max-width: 300px;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%); 
+            transition: transform 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        .sidebar.active { transform: translateX(0); }
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            display: none;
+        }
+        .sidebar-backdrop.active { display: block; }
+
+        .sidebar-header { display: flex; align-items: center; padding: 10px 15px; border-bottom: 1px solid #eee; }
+        .sidebar-close { font-size: 30px; margin-right: 15px; cursor: pointer; }
+        .sidebar-nav-list { list-style: none; padding: 0; margin: 0; }
+        .sidebar-nav-list li a { display: block; padding: 12px 20px; text-decoration: none; color: #333; font-size: 16px; border-bottom: 1px solid #f0f0f0; }
+        .sidebar-copyright { padding: 20px; font-size: 12px; color: #999; }
+
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 1); 
+            z-index: 3000;
+            display: none;
+            padding: 15px;
+        }
+        .search-overlay.active { display: block; }
+        
+        .search-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #searchInput {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        #searchButton {
+            background-color: #4848d7; 
+            color: white;
+            padding: 10px 15px;
+            border: 1px solid #4848d7;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-close-btn {
+            font-size: 30px;
+            margin-right: 15px;
+            cursor: pointer;
+            color: #333;
+        }
+        .search-results-container {
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+        .search-results-container p {
+            color: #999;
+            text-align: center;
+        }
+        .product-link {
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+        }
+        .product-link:last-child { border-bottom: none; }
+    </style>
+  <style>
+        /* General Reset and Styling */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* Main Content Wrapper (Mobile View ke liye) */
+        .main-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+          
+        }
+
+
+        .policy-page-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: #fff;
+            min-height: 100vh;
+            padding-bottom: 50px 80 px; 
+            box-sizing: border-box;/* Footer ke liye space */
+        }
+
+        /* --- 1. WHY BUY FROM US Section --- */
+        .why-buy-section {
+            padding: 30px 20px;
+            text-align: left;
+        }
+
+        .why-buy-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .why-buy-section p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .shop-now-btn {
+            background-color: #4848d7; /* Blue color */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none; /* Agar <a> tag use kar rahe hain */
+        }
+        
+        /* --- 2. Icon Points (Features) --- */
+        .feature-points {
+            padding: 20px 20px 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .feature-icon-box {
+            font-size: 24px; /* Icon size */
+            color: #333;
+            margin-right: 15px;
+            /* Icon ke neeche aur upar halki line jaisa dikhane ke liye */
+            padding: 5px; 
+        }
+
+        /* --- 3. QUICK LINKS Section (Blue Footer) --- */
+        .quick-links-section {
+            background-color: #4848d7; /* Blue background */
+            color: white;
+            padding: 30px 20px 50px; /* Neeche zyada padding */
+            margin-top: 30px;
+        }
+
+        .quick-links-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Halka white line */
+        }
+
+        .quick-links-section a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 8px 0;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .quick-links-section a:hover {
+            opacity: 1;
+        }
+
+        /* Footer Banner (Optional: "Create your own online store...") */
+        .footer-banner {
+            background-color: #f7f7f7;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+        .footer-banner span {
+            color: #4848d7; /* Blue text */
+            font-weight: 600;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .footer-banner .avatar {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="logo">SURYAS ASTITV</div>
-    <nav>
-      <ul>
+  
+  
+<div class="header-wrapper">
+    <div class="main-header-bar">
+        <span class="menu-icon" id="menuOpenBtn">☰</span>
+        
+        <div class="logo-box">
+            <div class="logo-image-placeholder">SS</div>
+            <span class="logo-text">SURVAS ASTIV</span>
+        </div>
+        
+        <div class="header-actions">
+            <span aria-label="Search Icon" id="searchOpenBtn">🔍</span>
+            <span aria-label="Cart Icon">🛒</span>
+        </div>
+    </div>
+    
+    <div class="shop-all-nav" id="shopAllNav">
+        Shop All <span class="dropdown-arrow">▼</span>
+        <div class="dropdown-menu" id="shopAllDropdown">
+            <a href="Brass Idols.html">Brass Idols</a>
+            <a href="Brass Pooja Essentials.html">Brass Pooja Essentials</a>
+            <a href="Home Decoration.html">Home Decoration</a>
+            <a href="Showpieces.html">Showpieces</a>
+            <a href="Statues.html">Statues</a>
+            <a href="Gift Items.html">Gift Items</a>
+            <a href="products.html">Shop All Products</a>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <span class="sidebar-close" id="sidebarCloseBtn">✕</span>
+        <div class="logo-box">
+            <div class="logo-image-placeholder">S.S.</div>
+            <span class="logo-text">SURVAS ASTIV</span>
+        </div>
+    </div>
+
+    <ul class="sidebar-nav-list">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About Us</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+        <li><a href="products.html">Shop</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="FACs.html">FAQs</a></li>v
+        <li style="border-top: 1px solid #ccc; margin-top: 10px;"><a href="#">Track Order</a></li>
+        <li><a href="Cancel.html">Cancellation & Refund</a></li>
+        <li><a href="Shipping.html">Shipping & Delivery</a></li>
+        <li><a href="TC.html">Terms & Conditions</a></li>
+        <li><a href="#">Privacy</a></li>
+    </ul>
+    <div class="sidebar-copyright">
+        © suryasastitv.myinstamojo.com<br>
+        2025. All rights reserved.
+    </div>
+</div>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-header">
+        <span class="search-close-btn" id="searchCloseBtn">✕</span>
+        <input type="text" id="searchInput" placeholder="Search for products...">
+        <button id="searchButton">Search</button>
+    </div>
+    
+    <div class="search-results-container" id="searchResults">
+        <p>Type to see search results...</p>
+    </div>
+</div>
+
 
   <!-- About Section -->
   <section class="about">
@@ -36,41 +423,182 @@
     </p>
   </section>
 
-  <!-- Founders Section -->
-<section class="founders">
-  <h2>Our Founders</h2>
-  <div class="founders-wrapper">
 
-    <div class="founder-card">
-      <div class="founder-photo">
-        <img src="images/satakshi.jpg" alt="Satakshi Saraswat">
-      </div>
-      <div class="founder-info">
-        <h3>Satakshi Saraswat</h3>
-        <p class="role">Founder & Creative Head</p>
-        <p class="bio">Passionate about design & culture, she ensures every product reflects true Indian elegance.</p>
-      </div>
+
+<section class="Why-Buy">
+  <div class="main-wrapper">
+    <div style="padding: 10px; text-align: center; border-bottom: 1px solid #eee;">
+        
+    </div>
+    
+    <div class="why-buy-section">
+        <h2>Why Buy From Us?</h2>
+        <p>At our online store, we believe that quality and speed are key when it comes to delivering exceptional customer service. That's why we use only the highest grade materials in the manufacturing of our products and offer lightning-fast shipping to ensure that you receive your orders as quickly as possible.</p>
+        <a href="products.html" class="shop-now-btn">Shop Now</a>
     </div>
 
-    <div class="founder-card">
-      <div class="founder-photo">
-        <img src="images/sunny.jpg" alt="Sunny Dhaka">
-      </div>
-      <div class="founder-info">
-        <h3>Sunny Dhaka</h3>
-        <p class="role">Founder & Operations Head</p>
-        <p class="bio">Focused on growth & operations, he makes sure each product reaches you with perfection.</p>
-      </div>
+    <div class="feature-points">
+        <div class="feature-item">
+            <span class="feature-icon-box" aria-label="Secure Payments Icon">🔒</span>
+            <span>Secure Payments</span>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon-box" aria-label="Shipping Icon">🚚</span>
+            <span>Shipping in India</span>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon-box" aria-label="Quality Icon">👍</span>
+            <span>Great Value & Quality</span>
+        </div>
     </div>
+    
+    
+    <div class="quick-links-section">
+        <h3>Quick Links</h3>
+        <a href="Cancel.html">Cancellation & Refund</a>
+        <a href="TC.html">Terms & Conditions</a>
+        <a href="Shipping.html">Shipping & Delivery</a>
+        </div>
+</div>
 
-  </div>
 </section>
-
 
   <!-- Footer -->
   <footer>
     <p>© 2025 SURYAS ASTITV. All Rights Reserved.</p>
   </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const body = document.body;
+
+    // === Sidebar ===
+    const sidebar = document.getElementById('sidebar');
+    const menuOpenBtn = document.getElementById('menuOpenBtn');
+    const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+    function toggleSidebar(isOpen) {
+        if (isOpen) {
+            sidebar.classList.add('active');
+            sidebarBackdrop.classList.add('active');
+            body.style.overflow = 'hidden';
+        } else {
+            sidebar.classList.remove('active');
+            sidebarBackdrop.classList.remove('active');
+            body.style.overflow = 'auto';
+        }
+    }
+
+    if (menuOpenBtn && sidebarCloseBtn && sidebarBackdrop) {
+        menuOpenBtn.addEventListener('click', () => toggleSidebar(true));
+        sidebarCloseBtn.addEventListener('click', () => toggleSidebar(false));
+        sidebarBackdrop.addEventListener('click', () => toggleSidebar(false));
+    }
+
+    // === Search ===
+    const searchOpenBtn = document.getElementById('searchOpenBtn');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchCloseBtn = document.getElementById('searchCloseBtn');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const searchResults = document.getElementById('searchResults');
+
+    function toggleSearchOverlay(isOpen) {
+        if (isOpen) {
+            searchOverlay.classList.add('active');
+            body.style.overflow = 'hidden';
+            searchInput.focus();
+        } else {
+            searchOverlay.classList.remove('active');
+            body.style.overflow = 'auto';
+            searchInput.value = '';
+            searchResults.innerHTML = '<p>Type to see search results...</p>';
+        }
+    }
+
+    if (searchOpenBtn && searchCloseBtn) {
+        searchOpenBtn.addEventListener('click', () => toggleSearchOverlay(true));
+        searchCloseBtn.addEventListener('click', () => toggleSearchOverlay(false));
+    }
+
+    // === Load Products from product.html ===
+    let productList = [];
+
+    async function loadProducts() {
+        try {
+            const response = await fetch('product.html');
+            const text = await response.text();
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = text;
+
+            const products = tempDiv.querySelectorAll('.product-card');
+            productList = Array.from(products).map(p => ({
+                title: p.querySelector('h3')?.textContent.trim() || '',
+                img: p.querySelector('img')?.src || '',
+                link: p.querySelector('a.btn')?.href || '#'
+            }));
+        } catch (err) {
+            console.error('Error loading products:', err);
+        }
+    }
+
+    loadProducts();
+
+    // === Perform Search ===
+    function performSearch() {
+        const query = searchInput.value.toLowerCase().trim();
+        searchResults.innerHTML = '';
+
+        if (!query) {
+            searchResults.innerHTML = '<p>Type to see search results...</p>';
+            return;
+        }
+
+        let found = 0;
+        productList.forEach(product => {
+            if (product.title.toLowerCase().includes(query)) {
+                found++;
+                const resultItem = document.createElement('a');
+                resultItem.className = 'product-link';
+                resultItem.href = product.link;
+                resultItem.innerHTML = `
+                    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #333;">
+                        <img src="${product.img}" style="width:40px;height:40px;object-fit:cover;border-radius:5px;">
+                        <span style="color:#fff;">${product.title.replace(new RegExp(query, 'gi'), match => `<strong style="color:#d4a753;">${match}</strong>`)}</span>
+                    </div>
+                `;
+                searchResults.appendChild(resultItem);
+            }
+        });
+
+        if (found === 0) {
+            searchResults.innerHTML = `<p>No products found for "<strong>${query}</strong>".</p>`;
+        }
+    }
+
+    if (searchInput && searchButton) {
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('input', performSearch);
+        searchInput.addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
+    }
+
+    // === Dropdown ===
+    const shopAllNav = document.getElementById('shopAllNav');
+    const shopAllDropdown = document.getElementById('shopAllDropdown');
+
+    if (shopAllNav && shopAllDropdown) {
+        shopAllNav.addEventListener('click', function(event) {
+            shopAllDropdown.classList.toggle('active');
+            event.stopPropagation();
+        });
+
+        document.addEventListener('click', function() {
+            shopAllDropdown.classList.remove('active');
+        });
+    }
+});
+</script>
+
 
 </body>
 </html>
