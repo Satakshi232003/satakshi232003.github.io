@@ -4,8 +4,268 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SURYAS ASTITV - Home</title>
+  
   <link rel="stylesheet" href="style.css"> <!-- External CSS -->
 <style>
+  :root {
+            --primary-color: #ff9900; /* Gold/Orange */
+            --secondary-color: #333;
+            --dark-gold: #b8860b; /* A darker gold for accents */
+            --light-bg: #f8f9fa;
+            --text-color-dark: #212529;
+            --text-color-light: #6c757d;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; /* Using Poppins or similar for a modern look */
+            background-color: #fcfcfc; /* Slightly off-white background */
+            color: var(--text-color-dark);
+        }
+
+        /* Navbar Styling */
+        .navbar-brand .main-logo {
+            height: 45px; /* Adjust logo size */
+            margin-right: 10px;
+        }
+        .navbar-brand .ss-icon {
+            height: 30px;
+            margin-left: -5px; /* Overlap slightly with text */
+        }
+        .custom-navbar {
+            box-shadow: 0 2px 8px rgba(0,0,0,.08); /* Stronger shadow */
+            background-color: white !important;
+        }
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        .navbar-toggler {
+            border: none;
+        }
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+        }
+
+        /* Hero Section Styling (Matches the new image's main banner) */
+        .hero-section-new {
+            background-color: white; /* Changed to white background */
+            padding: 50px 0; /* Reduced padding */
+            text-align: center;
+            overflow: hidden; /* To handle animations */
+        }
+
+        .hero-section-new .main-brand-logo {
+            max-width: 600px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 30px;
+            animation: fadeInScale 1.5s ease-out; /* Custom animation */
+        }
+
+        .hero-section-new h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--dark-gold);
+            margin-bottom: 15px;
+            animation: slideInUp 1.2s ease-out;
+        }
+
+        .hero-section-new p.tagline {
+            font-size: 1.4rem;
+            color: var(--text-color-light);
+            margin-bottom: 40px;
+            animation: slideInUp 1.4s ease-out;
+        }
+        
+        /* Feature Section Styling (Dark banner below hero) */
+        .feature-section {
+            background-color: var(--secondary-color); /* Dark background */
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .feature-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #ffffff;
+            animation: bounceIn 1.5s ease-out; /* Attractive bounce-in */
+        }
+        .feature-list span {
+            display: inline-block;
+            margin: 0 15px 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .feature-list span:hover {
+            transform: translateY(-3px) scale(1.02);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .feature-list {
+            margin-bottom: 30px;
+            display: flex; /* Use flexbox for better alignment */
+            flex-wrap: wrap; /* Allow items to wrap */
+            justify-content: center; /* Center items */
+            align-items: center;
+        }
+        .feature-list .emoji {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        .cta-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+        }
+
+        .shop-btn-new {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            padding: 12px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px; /* Pill-shaped button */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.4);
+        }
+        .shop-btn-new:hover {
+            background-color: var(--dark-gold);
+            border-color: var(--dark-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.6);
+            color: white;
+        }
+
+        /* Latest Products Section */
+        .products-section {
+            padding: 60px 0;
+            background-color: white;
+            text-align: center;
+        }
+        .products-section h2 {
+            font-weight: 700;
+            color: var(--dark-gold);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            font-size: 2.2rem;
+        }
+        .products-section h2::after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 3px;
+            background-color: var(--primary-color);
+            left: 15%;
+            bottom: -10px;
+            border-radius: 5px;
+        }
+        .product-card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,.15);
+        }
+        .product-card img {
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        .product-card .card-title {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        .product-card .card-text {
+            color: var(--text-color-light);
+        }
+
+
+        /* About Us Section (Keeping previous for reference, can remove if not needed) */
+        .about-us-section {
+            padding: 60px 0;
+            text-align: center;
+            background-color: var(--light-bg);
+        }
+
+        .about-us-section h2 {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+
+        .about-us-section p {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        /* Animations */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+                animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0% { opacity: 0; -webkit-transform: scale3d(.3, .3, .3); transform: scale3d(.3, .3, .3); }
+            20% { -webkit-transform: scale3d(1.1, 1.1, 1.1); transform: scale3d(1.1, 1.1, 1.1); }
+            40% { -webkit-transform: scale3d(.9, .9, .9); transform: scale3d(.9, .9, .9); }
+            60% { opacity: 1; -webkit-transform: scale3d(1.03, 1.03, 1.03); transform: scale3d(1.03, 1.03, 1.03); }
+            80% { -webkit-transform: scale3d(.97, .97, .97); transform: scale3d(.97, .97, .97); }
+            100% { opacity: 1; -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section-new h1 {
+                font-size: 2rem;
+            }
+            .hero-section-new p.tagline {
+                font-size: 1.1rem;
+            }
+            .feature-list span {
+                font-size: 0.9rem;
+                margin: 0 8px 10px;
+                padding: 6px 10px;
+            }
+            .feature-section h2 {
+                font-size: 1.5rem;
+            }
+            .cta-text {
+                font-size: 1.1rem;
+            }
+            .shop-btn-new {
+                font-size: 1rem;
+                padding: 10px 30px;
+            }
+            .products-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+  <style>
         body {
             font-family: sans-serif;
             margin: 0;
@@ -307,6 +567,91 @@ button.prev, button.next {
 button.prev { left: 10px; }
 button.next { right: 10px; }
 button:hover { background: rgba(0,0,0,0.7); }
+
+
+
+.hero-section-new {
+            background-color: rgb(253, 247, 247); /* Changed to white background */
+            padding: 50px 0; /* Reduced padding */
+            text-align: center;
+            overflow: hidden; /* To handle animations */
+        }
+
+        .hero-section-new .main-brand-logo {
+            max-width: 600px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 30px;
+            animation: fadeInScale 1.5s ease-out; /* Custom animation */
+        }
+
+        .hero-section-new h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--dark-gold);
+            margin-bottom: 15px;
+            animation: slideInUp 1.2s ease-out;
+        }
+
+        .hero-section-new p.tagline {
+            font-size: 1.4rem;
+            color: var(--text-color-light);
+            margin-bottom: 40px;
+            animation: slideInUp 1.4s ease-out;
+        }
+        
+        /* Feature Section Styling (Dark banner below hero) */
+        .feature-section {
+            background-color: var(--secondary-color); /* Dark background */
+            color: rgb(214, 29, 29);
+            padding: 40px 0;
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .feature-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #26e23c;
+            animation: bounceIn 1.5s ease-out; /* Attractive bounce-in */
+        }
+        .feature-list span {
+            display: inline-block;
+            margin: 0 15px 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background-color: rgb(255, 255, 225);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .feature-list span:hover {
+            transform: translateY(-3px) scale(1.02);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .feature-list {
+            margin-bottom: 30px;
+            display: flex; /* Use flexbox for better alignment */
+            flex-wrap: wrap; /* Allow items to wrap */
+            justify-content: center; /* Center items */
+            align-items: center;
+        }
+        .feature-list .emoji {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        .cta-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 25px;
+            color: #624cde;
+        }
+
+
+
+
 </style>
 
 
@@ -391,19 +736,18 @@ button:hover { background: rgba(0,0,0,0.7); }
 
 
   <!-- Hero Section -->
-  <section class="hero">
-    <img src="images/banner.jpg" alt="Banner" class="banner">
-    <div class="hero-text">
-      <h1>Where Art Meets Soul & Tradition Finds a Home</h1>
-      <p>
-        Step into a world of timeless elegance with handcrafted brass & ethnic home décor. <br><br>
-        🎁 Perfect for Gifting | 🏡 Ideal for Home Styling | 🔱 Rooted in Indian Culture <br>
-        📦 New Collections | 🎉 Festive Deals | 📸 Styling Ideas <br><br>
-        <strong>Follow us and bring home “Astitv” — because every home deserves a story.</strong>
-      </p>
-      <a href="products.html" class="btn">Shop Now</a>
-    </div>
-  </section>
+         <section class="hero-section-new">
+            <div class="container">
+                <img src="images/banner.jpg" alt="SURYAS ASTITV Main Logo" class="img-fluid main-brand-logo">
+                <h1 class="animate_animated animate_fadeIn">Where Art Meets Soul & Tradition Finds a Home</h1>
+                <p class="lead tagline animate_animated animate_fadeInUp">Step into a world of timeless elegance with handcrafted brass & ethnic home décor.</p>
+              </div>
+                   <a href="products.html" class="btn">Shop Now</a>
+           
+        </section>
+
+       
+
 
 <!-- Latest Products Preview -->
 <section class="products">
@@ -571,34 +915,26 @@ button:hover { background: rgba(0,0,0,0.7); }
       <!-- Horizontal categories grid -->
       <div class="categories-grid">
         <a class="category-card" href="Brass Pooja Essentials.html">
-          <img src="images/lota.jpg" alt="Brass Pooja Essentials" />
-          <div class="cat-title">Brass Pooja Essentials</div>
+          <img src="images/pooja_essentials.png" alt="Brass Pooja Essentials" />
+          <div class="product-title">Brass Pooja Essentials</div>
         </a>
 
         <a class="category-card" href="Brass Idols.html">
-          <img src="images/Ganesh-Lakshmi.jpg" alt="Brass Idols" />
+          <img src="images/idols.png" alt="Brass Idols" />
           <div class="cat-title">Brass Idols</div>
         </a>
 
         <a class="category-card" href="Home Decoration.html">
-          <img src="images/Turtle-Plate.jpg" alt=">Home Decoration" />
+          <img src="images/homedecor.png" alt=">Home Decoration" />
           <div class="cat-title">Home Decoration</div>
         </a>
 
         <a class="category-card" href="Gift Items.html">
-          <img src="images/logo.jpg" alt="Gift Items" />
+          <img src="images/giftitems.png" alt="Gift Items" />
           <div class="cat-title">Gift Items</div>
         </a>
 
-        <a class="category-card" href="showpieces.html">
-          <img src="images/Glass-Plate.jpg" alt="Showpieces" />
-          <div class="cat-title">Showpieces</div>
-        </a>
-
-        <a class="category-card" href="Statues.html">
-          <img src="images/Khatu-Shyam.jpg" alt="Statues" />
-          <div class="cat-title">Statues</div>
-        </a>
+      
         <!-- add more categories as needed -->
       </div>
     </section>
@@ -608,21 +944,21 @@ button:hover { background: rgba(0,0,0,0.7); }
   <div class="review-container">
 
     <div class="review-card">
-      <img src="" alt="User 1">
+     
       <h3>Ritika Sharma</h3>
       <div class="stars">⭐⭐⭐⭐⭐</div>
       <p>"Amazing quality brass products! The packaging was perfect and delivery on time."</p>
     </div>
 
     <div class="review-card">
-      <img src="" alt="User 2">
+      
       <h3>Amit Verma</h3>
       <div class="stars">⭐⭐⭐⭐</div>
       <p>"The craftsmanship is beautiful. I ordered a diya and it looks stunning in my home."</p>
     </div>
 
     <div class="review-card">
-      <img src="" alt="User 3">
+     
       <h3>Priya Nair</h3>
       <div class="stars">⭐⭐⭐⭐⭐</div>
       <p>"Excellent customer support and very unique designs. Highly recommended!"</p>
@@ -638,10 +974,10 @@ button:hover { background: rgba(0,0,0,0.7); }
 
 <div class="founder-card">
       <div class="founder-photo">
-        <img src="images/sunny.jpg"" alt="Sunny Dhaka">
+        <img src="images/founder_2.png" alt="Founder">
       </div>
       <div class="founder-info">
-        <h3>Sunny Dhaka</h3>
+        <h3></h3>
         <p class="role">Founder & Operations Head</p>
         <p class="bio">Focused on growth & operations, he makes sure each product reaches you with perfection.</p>
       </div>
@@ -649,10 +985,10 @@ button:hover { background: rgba(0,0,0,0.7); }
 
     <div class="founder-card">
       <div class="founder-photo">
-        <img src="images/satakshi.jpg" alt="Satakshi Saraswat">
+        <img src="images/founder_1.png" alt="Founder">
       </div>
       <div class="founder-info">
-        <h3>Satakshi Saraswat</h3>
+        <h3></h3>
         <p class="role">Founder & Creative Head</p>
         <p class="bio">Passionate about design & culture, she ensures every product reflects true Indian elegance.</p>
       </div>
@@ -803,6 +1139,83 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        // JavaScript for scroll-reveal and ripple effects
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll-reveal for About Us Section (retained)
+            const aboutSection = document.querySelector('.about-us-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('h2, p, a').forEach((el, index) => {
+                            el.style.opacity = '0';
+                            el.style.transform = 'translateY(20px)'; // Initial state for animation
+                            setTimeout(() => {
+                                el.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                                el.style.opacity = '1';
+                                el.style.transform = 'translateY(0)';
+                            }, index * 200);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Ensure elements are initially hidden for the JS animation
+            aboutSection.querySelectorAll('h2, p, a').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+            });
+            observer.observe(aboutSection);
+
+            // Ripple effect for the new "Shop Now" button
+            document.getElementById('shopNowBtnNew').addEventListener('click', function(e) {
+                const button = e.target;
+                const circle = document.createElement('span');
+                const diameter = Math.max(button.clientWidth, button.clientHeight);
+                const radius = diameter / 2;
+
+                circle.style.width = circle.style.height = '${diameter}px';
+                circle.style.left = '${e.clientX - (button.getBoundingClientRect().left + radius)}px';
+                circle.style.top = '${e.clientY - (button.getBoundingClientRect().top + radius)}px';
+                circle.classList.add('ripple');
+
+                const existingRipple = button.getElementsByClassName('ripple')[0];
+                if (existingRipple) {
+                    existingRipple.remove();
+                }
+                button.appendChild(circle);
+            });
+
+            // Dynamic CSS for ripple effect (ensure it's added once)
+            if (!document.querySelector('style#ripple-style')) {
+                const style = document.createElement('style');
+                style.id = 'ripple-style';
+                style.innerHTML = `
+                    .shop-btn-new {
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    .ripple {
+                        position: absolute;
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple-animation 0.6s linear;
+                        background-color: rgba(255, 255, 255, 0.7);
+                    }
+                    @keyframes ripple-animation {
+                        to {
+                            transform: scale(4);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        });
+    </script>
 
 </body>
 
