@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Signup</title>
+
+<style>
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.box{
+background:white;
+padding:40px;
+border-radius:12px;
+width:350px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+input{
+width:90%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+button{
+background:#4facfe;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#2c8ef4;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Create Account</h2>
+
+<div id="emailSection">
+<input type="email" id="email" placeholder="Enter Email"><br>
+<button onclick="checkEmail()">Send OTP</button>
+</div>
+
+<div id="otpSection" style="display:none;">
+<input type="text" id="userOtp" placeholder="Enter OTP"><br>
+<button onclick="verifyOTP()">Verify OTP</button>
+</div>
+
+<div id="createSection" style="display:none;">
+<input type="text" id="username" placeholder="Create Username"><br>
+<input type="password" id="password" placeholder="Create Password"><br>
+<button onclick="createAccount()">Create Account</button>
+</div>
+
+<p id="msg"></p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+
+(function(){
+emailjs.init("3DgCojxRbUoiOR4EW");
+})();
+
+var generatedOTP;
+
+// 🔍 CHECK EMAIL FIRST
+function checkEmail(){
+
+var email=document.getElementById("email").value;
+
+fetch("https://script.google.com/macros/s/AKfycbwvGVmbMi2w11wGoTc-wtcYK3u9kCQZulqc16ZiQN8hPwrNCehGrv565wD30BPa4oTh/exec")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+let exists=false;
+
+data.forEach(function(row){
+
+if(row.email==email){
+exists=true;
+}
+
+});
+
+if(exists){
+
+document.getElementById("msg").innerHTML="Account already exists ⚠️ Redirecting to login...";
+
+setTimeout(function(){
+
+window.location.href="login.html";
+
+},2000);
+
+}
+else{
+
+sendOTP();
+
+}
+
+});
+
+}
+
+
+// 📩 SEND OTP
+function sendOTP(){
+
+var email=document.getElementById("email").value;
+
+generatedOTP=Math.floor(100000+Math.random()*900000);
+
+var params={
+email:email,
+otp:generatedOTP
+};
+
+emailjs.send("service_pb1151y","template_lg3j0lh",params)
+.then(function(){
+
+document.getElementById("msg").innerHTML="OTP Sent 📩";
+
+document.getElementById("emailSection").style.display="none";
+document.getElementById("otpSection").style.display="block";
+
+});
+
+}
+
+
+// 🔐 VERIFY OTP
+function verifyOTP(){
+
+var entered=document.getElementById("userOtp").value;
+
+if(entered!=generatedOTP){
+
+document.getElementById("msg").innerHTML="Wrong OTP ❌";
+return;
+
+}
+
+document.getElementById("msg").innerHTML="OTP Verified ✅";
+
+document.getElementById("otpSection").style.display="none";
+document.getElementById("createSection").style.display="block";
+
+}
+
+
+// 👤 CREATE ACCOUNT
+function createAccount(){
+
+var email=document.getElementById("email").value;
+var username=document.getElementById("username").value;
+var password=document.getElementById("password").value;
+var enteredOtp=document.getElementById("userOtp").value;
+
+fetch("https://script.google.com/macros/s/AKfycbwvGVmbMi2w11wGoTc-wtcYK3u9kCQZulqc16ZiQN8hPwrNCehGrv565wD30BPa4oTh/exec",{
+
+method:"POST",
+
+body:JSON.stringify({
+email:email,
+generatedOtp:generatedOTP,
+enteredOtp:enteredOtp,
+username:username,
+password:password
+})
+
+})
+.then(res=>res.text())
+.then(data=>{
+
+document.getElementById("msg").innerHTML="Account Created ✅";
+
+setTimeout(function(){
+
+window.location.href="login.html";
+
+},1500)
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

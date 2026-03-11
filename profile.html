@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Customer Profile</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f5f5f5;
+margin:0;
+}
+
+.header{
+background:#4facfe;
+color:white;
+padding:15px;
+font-size:22px;
+text-align:center;
+}
+
+.container{
+display:flex;
+margin-top:20px;
+}
+
+.sidebar{
+width:220px;
+background:white;
+padding:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.sidebar p{
+padding:10px;
+cursor:pointer;
+border-bottom:1px solid #eee;
+}
+
+.sidebar p:hover{
+background:#f0f0f0;
+}
+
+.main{
+flex:1;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+margin-bottom:20px;
+display:none;
+}
+
+.active{
+display:block;
+}
+
+button{
+background:#4facfe;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:6px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+Shopping Customer Profile
+</div>
+
+<div class="container">
+
+<div class="sidebar">
+
+<p onclick="window.location.href='MyProfile.html'">👤 My Profile</p>
+<p onclick="window.location.href='MyOrders.html'">📦 My Orders</p>
+<p onclick="window.location.href='payments.html'">💳 Payments</p>
+<p onclick="window.location.href='Address.html'">📍 Address</p>
+<p onclick="window.location.href='Wishlist.html'">❤️ Wishlist</p>
+<p onclick="logout()">🚪 Logout</p>
+
+</div>
+
+<div class="main">
+
+<div id="profile" class="card active">
+<h3>Welcome Customer</h3>
+<p>Your account is successfully created.</p>
+</div>
+
+<div id="orders" class="card">
+<h3>Recent Orders</h3>
+<p>No orders yet.</p>
+</div>
+
+<div id="payments" class="card">
+<h3>Payment Methods</h3>
+<p>No payment methods added.</p>
+</div>
+
+<div id="address" class="card">
+<h3>Saved Addresses</h3>
+<p>No address added.</p>
+</div>
+
+<div id="wishlist" class="card">
+<h3>Your Wishlist</h3>
+<p>No items in wishlist.</p>
+</div>
+
+</div>
+
+</div>
+<script>
+
+var scriptURL="https://script.google.com/macros/s/AKfycbwvGVmbMi2w11wGoTc-wtcYK3u9kCQZulqc16ZiQN8hPwrNCehGrv565wD30BPa4oTh/exec";
+
+var urlParams=new URLSearchParams(window.location.search);
+
+// 👇 अब username मिलेगा URL से
+var username=urlParams.get("username");
+
+function showSection(section){
+
+var cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+card.classList.remove("active");
+});
+
+document.getElementById(section).classList.add("active");
+
+}
+
+function logout(){
+
+// 🔴 logout time save
+fetch(scriptURL+"?logout=true&username="+username);
+
+alert("Logged out successfully");
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+</body>
+</html>
